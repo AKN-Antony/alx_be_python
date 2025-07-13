@@ -1,13 +1,15 @@
-income = int(input("Enter your monthly income:"))
+# finance_calculator.py
 
-expenses = int(input("Enter your monthly expenses:"))
+# Prompt user for monthly income and expenses
+monthly_income = float(input("Enter your monthly income: "))
+monthly_expenses = float(input("Enter your total monthly expenses: "))
 
-savings = income - expenses
+# Calculate monthly savings
+monthly_savings = monthly_income - monthly_expenses
 
-interest = 0.05
+# Calculate projected savings after one year with 5% interest
+projected_savings = monthly_savings * 12 + (monthly_savings * 12 * 0.05)
 
-Projected_Savings = savings * 12 + (savings * 12 * interest)
-
-print("your monthly savings are :", savings)
-print("Projected savings after one year, with interest, is :", Projected_Savings)
-
+# Display the results
+print(f"Your monthly savings are ${monthly_savings:.0f}.")
+print(f"Projected savings after one year, with interest, is: ${projected_savings:.0f}.")
