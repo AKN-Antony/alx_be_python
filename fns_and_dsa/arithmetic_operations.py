@@ -13,7 +13,6 @@ def perform_operation(num1: float, num2: float, operation: str):
     Raises:
         ValueError: If an invalid operation is specified
     """
-    # Dictionary mapping operations to their corresponding functions
     operations = {
         'add': lambda a, b: a + b,
         'subtract': lambda a, b: a - b,
@@ -21,15 +20,30 @@ def perform_operation(num1: float, num2: float, operation: str):
         'divide': lambda a, b: a / b if b != 0 else None
     }
     
-    # Normalize the operation string (lowercase and strip whitespace)
     operation = operation.strip().lower()
     
-    # Check if the operation is valid
     if operation not in operations:
-        valid_operations = ', '.join(operations.keys())
+        valid_operations = list(operations.keys())
         raise ValueError(f"Invalid operation '{operation}'. Must be one of: {valid_operations}")
     
-    # Perform the operation
-    result = operations[operation](num1, num2)
+    return operations[operation](num1, num2)
+
+# Test code that runs when the script is executed directly
+if __name__ == "__main__":
+    print("Testing arithmetic_operations.py")
     
-    return result
+    test_cases = [
+        (5, 3, 'add', 8),
+        (10, 4, 'subtract', 6),
+        (7, 2, 'multiply', 14),
+        (8, 2, 'divide', 4),
+        (5, 0, 'divide', None),
+        (10, 3, 'power', None)  # Should raise ValueError
+    ]
+    
+    for num1, num2, op, expected in test_cases:
+        try:
+            result = perform_operation(num1, num2, op)
+            print(f"{num1} {op} {num2} = {result} (Expected: {expected})")
+        except ValueError as e:
+            print(f"{num1} {op} {num2} = Error: {e}")
